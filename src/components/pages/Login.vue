@@ -17,14 +17,16 @@
             label="メールアドレス"
             placeholder="メールアドレス"
             outlined=""
+            :v-model="email"
           ></v-text-field>
           <v-text-field
             label="パスワード"
             outlined=""
             type="password"
-            aria-autocomplete="current-password"
+            autocomplete="current-password"
+            :v-model="password"
           ></v-text-field>
-          <v-btn block large>ログイン</v-btn>
+          <v-btn block large v-on:click="login">ログイン</v-btn>
           <v-checkbox label="ログインしたままにする"></v-checkbox>
         </v-form>
       </v-col>
@@ -34,6 +36,14 @@
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    email: String,
+    password: String,
+  }),
+  methods: {
+    login: () => {
+      this.$store.dispatch('login', this.email, this.password);
+    },
+  },
 };
 </script>

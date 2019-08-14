@@ -16,6 +16,9 @@
     </v-app-bar>
 
     <v-content>
+      <template v-if="existsBackendError">
+        <v-alert type="error">{{ backendError }}</v-alert>
+      </template>
       <router-view />
     </v-content>
   </v-app>
@@ -27,5 +30,13 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    backendError() {
+      return this.$store.getters.backendError;
+    },
+    existsBackendError() {
+      return this.$store.getters.backendError !== '';
+    },
+  },
 };
 </script>
