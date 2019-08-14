@@ -41,7 +41,7 @@ export default {
     password: String,
   }),
   methods: {
-    login: () => {
+    login: function() {
       this.$store.dispatch('login', this.email, this.password);
     },
   },
