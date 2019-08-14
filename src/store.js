@@ -5,44 +5,45 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    // NOTE: state の型定義めっちゃしたくなる……
     user: {
       email: '',
     },
-    // backendError って変数を用意すべきかは分からない
-    backendError: '',
+    // NOTE: errorMessages って変数を用意すべきかは分からない
+    errorMessages: [],
   },
   getters: {
     user(state) {
       return state.user;
     },
-    backendError(state) {
-      return state.backendError;
+    errorMessages(state) {
+      return state.errorMessages;
     },
   },
   mutations: {
-    // mutation の命名規則分からず
+    // FIXME: mutation の命名規則分からず
     setUser(state, email) {
       state.user.email = email;
     },
-    setBackendError(state, error) {
-      state.backendError = error;
+    pushToErrorMessages(state, error) {
+      state.errorMessages.push(error);
     },
-    removeBackendError(state) {
-      state.backendError = '';
+    truncateErrorMessages(state) {
+      state.errorMessages = [];
     },
   },
   actions: {
-    // action も命名規則分からず
+    // FIXME: action も命名規則分からず
     login({ commit }, email, password) {
-      // ここでバックエンドAPIと通信
+      // TODO: ここでバックエンドAPIと通信
       if (password === 'password') {
         commit('setUser', email);
       } else {
-        commit('setBackendError', 'パスワードが間違っています');
+        commit('pushToErrorMessages', 'パスワードが間違っています');
       }
     },
-    removeBackendError({ commit }) {
-      commit('removeBackendError');
+    truncateErrorMessages({ commit }) {
+      commit('truncateErrorMessages');
     },
   },
 });

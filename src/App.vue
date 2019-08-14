@@ -16,8 +16,10 @@
     </v-app-bar>
 
     <v-content>
-      <template v-if="existsBackendError">
-        <v-alert type="error">{{ backendError }}</v-alert>
+      <template v-if="existsErrorMessages">
+        <v-alert type="error" v-for="message in errorMessages" :key="message">
+          {{ message }}
+        </v-alert>
       </template>
       <router-view />
     </v-content>
@@ -31,11 +33,11 @@ export default {
     //
   }),
   computed: {
-    backendError() {
-      return this.$store.getters.backendError;
+    errorMessages() {
+      return this.$store.getters.errorMessages;
     },
-    existsBackendError() {
-      return this.$store.getters.backendError !== '';
+    existsErrorMessages() {
+      return this.$store.getters.errorMessages.length !== 0;
     },
   },
 };
