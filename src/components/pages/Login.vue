@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
       <v-col xs="12">
         <v-img
           :src="require('@/assets/logo.svg')"
@@ -10,8 +10,8 @@
         ></v-img>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col md="4" offset-md="4">
+    <v-row justify="center">
+      <v-col md="4">
         <v-form>
           <v-text-field
             label="メールアドレス"
