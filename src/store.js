@@ -42,6 +42,9 @@ export default new Vuex.Store({
         commit('pushToErrorMessages', 'パスワードが間違っています');
       }
     },
+    appendToErrorMessages({ commit }, message) {
+      commit('pushToErrorMessages', message);
+    },
     truncateErrorMessages({ commit }) {
       commit('truncateErrorMessages');
     },
